@@ -1,0 +1,37 @@
+ {{>adminHead}}
+ {{>admin}}
+ 
+ <div class="container mt-3" >
+  <div class="row"> 
+    <div class="col-md-6 mr-5" >
+      <h1>Edit Coupons</h1>
+ <form action="/editCoupon" method="post" >
+  <input type="hidden" name="id" class="form-control" value="{{coupon._id}}" >
+
+ <label for="" >Coupon name</label>
+ <input type="text" name="name" class="form-control" value="{{coupon.name}}" >
+ 
+
+ <label for="" >Expiry Date</label>
+ <input type="date" name="expiryDate" class="form-control"  value="{{coupon.expiryDate}}">
+ <label for="" >Max Amount</label>
+ <input type="text" name="maxAmount" class="form-control"  value="{{coupon.maxAmount}}" >
+
+ <label for="" >Min Amount</label>
+ <input type="text" name="minAmount" class="form-control"  value="{{coupon.minAmount}}">
+  <label for="" >Percentage</label>
+ <input type="text" name='percentage' class="form-control"  value="{{coupon.percentage}}">
+
+
+   
+
+
+ 
+ <button type="submit" class="btn btn-primary mt-2"> submit</button>
+      </form>
+      </div>
+      </div> 
+      </div>
+
+
+{{>adminFoot}}

@@ -1,0 +1,119 @@
+{{>adminHead}}
+{{>admin}}
+
+
+<div class="container pt-5">
+  {{!-- <div class="row">
+    <a href="/admin/addproducts" class="btn btn-info ml-auto " style="width: 200px;">add PRODUCTS </a>
+  </div> --}}
+</div>
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-12 ">
+      <table class="table table-striped border m-4" id='userData'>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Product Id</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Product Price</th>
+            <th>TotalPrice</th>
+            <th>Status</th>
+            <th>Action</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {{#each product}}
+          <tr onload="total('{{this.product}},'{{this.products.price}}','{{this.quantity}}')">
+            <td>{{inc @index}}</td>
+            <td>{{this.product}}</td>
+            <td><img src="/img/{{this.products.imageFile.[0]}}" alt=""
+                style="height:70px; width: 70px; border-radius: 15px;" /></td>
+            <td>{{this.products.name}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.products.offerprice}}</td>
+            <td id="{{this.product}}">{{this.totalprice}}</td>
+            <td>{{this.SPstatus}}</td>
+           
+            <td>
+              {{#if this.none}}
+              {{else}}
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  ACTION
+                </button>
+
+                {{#if this.return}}
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item"
+                    onclick="change('Approved return','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Approved return</a>
+                  <a class="dropdown-item"
+                    onclick="change('Return Rejected','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Reject</a>
+                  
+                </div>
+              {{else}}
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  {{#if dis}}
+                  {{else}}
+                  <a class="dropdown-item"
+                    onclick="change('Dispatched','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Dispatched</a>
+                    {{/if}}
+                  <a class="dropdown-item"
+                    onclick="change('Delivered','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">delivered</a>
+                  <a class="dropdown-item"
+                    onclick="change('Order Cancelled','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Cancel</a>
+
+                </div>
+                {{/if}}
+              </div>
+                  {{/if}}
+            </td>
+         
+
+
+          </tr>
+          {{/each}}
+
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
+{{>adminFoot}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+  function total(id, price, quantity) {
+    console.log('heloo')
+    document.getElementById(id).innerHTML = Math.round(price * quantity)
+
+  }
+
+</script>
+<script>
+  function change(e, proid, id, amount, userid) {
+    console.log(e)
+
+    $.ajax({
+      url: 'deliveryStatus',
+      method: 'post',
+      data: { action: e, order: id, user: userid, total: amount, product: proid },
+
+
+      success: (response) => {
+        alert("status")
+        window.location.href = ""
+
+      }
+    })
+
+  }
+
+</script>

@@ -1,0 +1,52 @@
+{{>adminHead}}
+{{>admin}}
+
+
+<div class="container pt-5">
+    <div class="row">
+        <a href="/addCoupon" class="btn btn-info ml-auto " style="width: 200px;">add Coupons </a>
+    </div>
+</div>
+<div class="container pt-5">
+<table class="table table-striped border m-4" id='userData'>
+  <thead>
+    <tr>
+      <th>No</th>
+        <th scope="col">Coupon name</th>
+      <th scope="col">Expiry Date</th>
+      <th scope="col">Max Amount</th>
+      <th scope="col">Min Amount</th>
+
+      <th scope="col">Percentage</th>
+      <th scope="col">Options</th>
+     
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each response}}
+    
+    <tr>
+      <td>{{inc @ index}}</td>
+      <td>{{this.name}}</td>    
+      <td>{{this.expiryDate}}</td>
+      <td>{{this.maxAmount}}</td>
+      <td>{{this.minAmount}}</td>
+      <td>{{this.percentage}}</td>
+      <td>
+      <a href="/editcoupon?id={{this.name}}" class="btn btn-outline-primary">edit</a>
+        <a href="/couponDelete?id={{this._id}}" onclick="return confirm('Are you sure you want to delete {{this.name}}?')" class="btn btn-outline-danger">delete</a>
+       </td>
+    </tr>
+
+    {{/each}}
+
+   
+  </tbody>
+</table>
+
+
+</div>
+
+{{>adminFoot}}
+

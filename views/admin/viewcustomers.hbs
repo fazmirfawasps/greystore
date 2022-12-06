@@ -1,0 +1,51 @@
+{{>adminHead}}
+{{>admin}}
+{{!-- <div class="container pt-5">
+    <div class="row">
+        <a href="/admin/addproducts" class="btn btn-info ml-auto "></a>
+    </div>
+</div> --}}
+<div class="container pt-5">
+<table class="table table-striped" id="userData">
+  <thead>
+    <tr>
+           <th scope="col">No</th>
+
+      <th scope="col">NAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">PHONE</th>
+     <th scope="col">BLOCK</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each customers}}
+    <tr>
+      <td>{{inc @ index}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.phone}}</td>
+      
+       
+       <td>
+        {{#if this.block}}
+         <a href="/unblock?id={{this._id}}" ><button type="button" class="btn btn-outline-success" >Unblock</button></a>
+
+         {{else}}
+          <a href="/block?id={{this._id}}"><button type="button" class="btn btn-outline-danger" onclick="return confirm('are r u sure u wanted block this number ')">Block</button></a>
+          {{/if}}
+
+       </td>
+      
+    </tr>
+    {{/each}}
+   
+  </tbody>
+  
+
+  
+</table>
+
+
+</div>
+{{>adminFoot}}

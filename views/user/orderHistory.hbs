@@ -1,0 +1,95 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ShopMax &mdash; Colorlib e-Commerce Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    
+  </head>
+  <body>
+    
+{{>userHead}}
+
+
+
+
+  <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <form class="col-md-12" method="post">
+            <div class="site-blocks-table">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Payment</th>
+                    <th class="product-quantity">Status</th>
+                    <th class="product-total">order date</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {{#each orderHistory}}
+                     <tr>
+                    <td class="product-name">
+                      <h2 class="h5 text-black">{{this.products.name}}</h2>
+                    </td>
+                    <td class="product-thumbnail">
+                      <img src="/img/{{this.products.imageFile.[0]}}" alt="Image" style="width:50px; height:50px;">
+                    </td>
+                   
+                    <td><p>{{this.payment}}</p></td>
+                    {{#if this.Now}}
+                    <td><a href="#" class="btn btn-success height-auto btn-sm">{{this.status}}</a></td>
+                    {{else}}
+                      <td><a href="#" class="btn btn-primary height-auto btn-sm">{{this.status}}</a></td>
+                      {{/if}}
+
+                                       <td><p>{{this.orderDate}}</p></td>
+
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/jquery-ui.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/main.js"></script>
+
+
+
+
+
+          </body>
+</html>

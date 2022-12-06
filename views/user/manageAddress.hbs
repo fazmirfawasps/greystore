@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
+    <link rel="stylesheet" href="/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    {{>userHead}}
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12">
+                {{!-- <div class="border p-4 rounded" role="alert">
+                    Returning customer? <a href="#">Click here</a> to login
+                </div> --}}
+            </div>
+        </div>
+        <div class="row">
+            {{#each response}}
+
+            <div class="col-md-6 mb-5 mb-md-0 mt-3">
+                {{!-- <h2 class="h3 mb-3 text-black">Billing Details</h2> --}}
+
+                <div class="border p-2 rounded" role="alert">
+                    {{#if this.status}}
+                    
+                    <label for="default address" style="color:#ee4266 ;">defaultAddress</label>
+                    {{else}}
+                     <label for="default address" style="color:#ee4266 ;">Address</label>
+                   
+                    {{/if}}
+
+                    <p>Name:{{this.name}}<br>
+                        Address:{{this.address}},
+                        {{this.city}},{{this.country}}
+                        ,{{this.pincode}}
+                        <br>{{this.email}}
+                        <br>mob no:{{this.phone}}
+                    </p>
+                    <div>
+                        <a href="/users/editad?id={{this._id}}" class="btn btn-danger ">edit</a>
+                        {{#if this.status}}
+                        {{else}}
+                        <a href="/users/setAddress?id={{this._id}}" class="btn btn-secondary ml-2 ">set as default</a>
+                        {{/if}}
+                    </div>
+
+                </div>
+
+            </div>
+            {{/each}}
+
+
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+</html>

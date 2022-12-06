@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/user/loginform.css">
+    <title>Login Form Demo</title>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <form action="/users/login" method="post" class="form">
+            {{#if errorMessage}}
+            <p style="color:red;">{{errorMessage}}</p>
+            {{/if}}
+            <h2>Login</h2>
+            <div class="input-group">
+                <input type="email"  name="email"  required>
+                <label>Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" value='Fazmir@5354' required>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Submit" class="submit-btn">
+
+        <p class="text-center mt-5 mb-0">Create an account <a href="/users/signup" class="fw-bold" style="color: rgb(15, 197, 185);"><u>here</u></a></p>
+        <a href="/users/otp" style="color: rgb(15, 197, 185);" >Login with OTP</a>
+
+        </form>
+    </div>
+</body>
+
+</html>

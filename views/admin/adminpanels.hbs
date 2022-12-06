@@ -1,0 +1,53 @@
+{{>adminHead}}
+{{>admin}}
+
+
+<div class="container pt-5">
+    <div class="row">
+        <a href="/admin/addproducts" class="btn btn-info ml-auto " style="width: 200px;">add PRODUCTS </a>
+    </div>
+</div>
+<div class="container pt-5">
+<table class="table table-striped border m-4" id='userData'>
+  <thead>
+    <tr>
+        <th scope="col">N0</th>
+      <th scope="col">NAME</th>
+      <th scope="col">PRICE</th>
+      <th scope="col">offered price</th>
+
+      <th scope="col">BRAND</th>
+      <th scope="col">CATEGORY</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">IMAGE</th>
+      <th scope='col'>OPTIONS</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td>{{ inc @ index}}</td>    
+      <td>{{this.name}}</td>
+      <td>{{this.price}}</td>
+      <td>{{this.offerprice}}</td>
+      <td>{{this.brand}}</td>
+      <td>{{this.category}}</td>
+      <td>{{this.description}}</td>
+       <td><img src= "./img/{{this.imageFile.[0]}}" style="width: 25px;" ></td>
+       <td>
+        <a href="/edit?id={{this._id}}" class="btn btn-outline-primary">edit</a>
+        <a href="/admin/delete?id={{this._id}}" onclick="return confirm('Are you sure you want to delete {{this.product}}?')" class="btn btn-outline-danger">delete</a>
+       </td>
+      
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+
+
+</div>
+
+{{>adminFoot}}
+

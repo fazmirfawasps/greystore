@@ -1,0 +1,54 @@
+{{>adminHead}}
+{{>admin}}
+ 
+ <div class="container mt-3 mr-5"  >
+  <div class="row " style="margin-right: 300px;"> 
+    <div class="col-md-6 " >
+      <h1> edit prducts</h1>
+ <form action="/admin/edit?id={{product._id}}" method="post" enctype="multipart/form-data">
+
+ <label for="" >Name</label>
+ <input type="text" name="name" class="form-control" value="{{product.name}}" required >
+ 
+
+ <label for="" >price</label>
+ <input type="text" name="price" class="form-control"  value="{{product.price}}" required>
+ <label for="" >offer price</label>
+ <input type="text" name="offerprice" class="form-control"  value="{{product.offerprice}}" required>
+
+
+ <label for="" >Description</label>
+ <input type="text" name="description" class="form-control" value="{{product.description}}" required >
+
+  <label for="" >category</label>
+<select name="category" class="custom-select custom-select-md mb-3" >
+     <option>{{product.category}} </option>
+     {{#each category}}
+     <option>{{this.category}}</option>
+     {{/each}}
+     
+   
+</select>
+<label for="">text</label>
+<input type="text" name="text" class="form-control">
+  <label for="" >brand</label>
+ <input type="text" name="brand" class="form-control" value="{{product.brand}}"  required>
+
+ <label for="" class="form-label">Image</label>
+ <img src="/img/{{product.imageFile.[0]}}"  style="width:50px ;" id="imgView" alt="">
+ <input type="file" name="image" class="form-control"  onchange="viewImage(event)" required>
+ <button type="submit" class="btn btn-primary mt-2"> submit</button>
+      </form>
+      </div>
+      </div> 
+      </div>
+
+      {{>adminFoot}}
+
+      <script>
+        function viewImage(event){
+          document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+        }
+      </script>
+
+

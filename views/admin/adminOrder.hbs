@@ -1,0 +1,131 @@
+{{>adminHead}}
+{{>admin}}
+
+
+<div class="container pt-5">
+
+
+  <div class="container pt-5">
+    <table class="table table-striped border m-4" id='userData'>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th scope="col">OrderId </th>
+
+          <th scope="col">amount</th>
+          <th scope="col">UserId</th>
+          <th scope="col">view</th>
+
+          {{!-- <th scope="col">Status</th> --}}
+          <th scope="col">Payment</th>
+          {{!-- <th>Delivery Status</th> --}}
+
+
+          <th scope="col">Order Date</th>
+          {{!-- <th scope="col">Action</th> --}}
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+        <tr id="orders">
+          <td>{{ inc @ index}}</td>
+          <td id="orderId" name="orderId" value="{{this._id}}">{{this._id}}</td>
+
+
+          <td>{{this.TotalAmount}}</td>
+          <td>{{this.user}}</td>
+
+          <td><a href="/viewSingleproduct?id={{this._id}}" class="btn btn-outline-primary">views</a></td>
+
+
+          {{!-- <td>{{this.status}}</td> --}}
+          <td>{{this.payment}} </td>
+
+          {{!-- <td>
+            <select id="{{this._id}}" name="status"
+              onchange="change('{{this._id}}','{{this.user}}','{{this.TotalAmount}}')">
+
+              <option id="
+            
+            " value="ordered">{{this.status}}</option>
+
+              {{#if this.pa}}
+              <option value="packed">packed</option>
+              {{/if}}
+
+              {{#if this.sh}}
+              <option value="shipped">shipped
+                {{/if}}
+
+              </option>
+              {{#if this.de}}
+              <option value="delivered">delivered</option>
+              {{/if}}
+              {{#if this.de}}
+              <option value="returned">returned</option>
+              {{/if}}
+
+
+
+            </select>
+
+          </td> --}}
+          {{!-- {{else}}
+          <td>
+            <select id="{{this._id}}" name="status"
+              onchange="change('{{this._id}}','{{this.user}}','{{this.TotalAmount}}')">
+              <option value="">{{this.status}}</option>
+            </select>
+          </td>
+          {{/if}} --}}
+          <td>{{this.orderDate}}</td>
+          {{!-- {{#if this.Now}}
+
+          <td class="{{this._id}}"><a href="/cancelOrder?id={{this._id}}" class="btn btn-danger"
+              onclick="return confirm('are u sure wanted to cancel this product?')">cancel</a> </td>
+
+
+          {{else}}
+          <td> {{this.status}}</td>
+          {{/if}} --}}
+
+
+        </tr>
+
+        {{/each}}
+
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script>
+
+  function change(e, id, amount) {
+    console.log(e)
+    var status = document.getElementById(e).value
+
+    $.ajax({
+      url: 'deliveryStatus',
+      method: 'post',
+      data: { change: status, order: e, user: id, total: amount },
+
+
+      success: (response) => {
+        alert(status)
+        document.location.reload()
+        if (status == 'delivered') {
+          document.getElementsByClassName('e').innerHTML = <a href="/cancelOrder?id={{this._id}}" class="btn btn-danger" onclick="return confirm('are u sure wanted to cancel this product?')">RETURN</a>
+        }
+      }
+    })
+
+  }
+
+</script>
+{{>adminFoot}}

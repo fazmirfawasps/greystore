@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {{>adminHead}}
+</head>
+
+<body>
+
+
+  {{>admin}}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <form action="/fromto" method="get">
+          <div class="row">
+            <div class="col-6">
+              <label for="FromDate">From</label>
+              <input type="date" name="FromDate" id="expiryDate" class="form-control" value="{{date.FromDate}}">
+            </div>
+            <div class="col-6">
+              <label for="ToDate">To</label>
+              <input type="date" name="ToDate" id="expiryDate" class="form-control" value="{{date.ToDate}}">
+            </div>
+            <button type="submit" hidden></button>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-md-4">
+        <form action="/admin/monthly" method="get">
+          <div class="row">
+            <div class="col-12">
+              <label for="month"> filter by Month</label>
+              <input type="month" name="month" id="monthly" class="form-control" value="{{cdate.month}}">
+            </div>
+            <button type="submit" hidden></button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <form action="/salesyearly" method="get">
+          <div class="row">
+            <div class="col-12">
+              <label for="yearly"> filter by Year</label>
+              <input type="number" name="yearly" id="yearly" class="form-control">
+            </div>
+            <button type="submit" hidden></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row m-5">
+      <div class="text-center"><b>Sales Report</b></div>
+      <table class="table table-striped m-4" id="userData">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Month</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {{#each Data}}
+          <tr>
+            <td>{{inc @index}}</td>
+            <td>{{this._id}}</td>
+            <td>{{this.quantity}}</td>
+            <td class="total">{{this.total}}</td>
+
+          </tr>
+          {{/each}}
+        </tbody>
+        <tfoot class="table-dark">
+          <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+
+            <td id="sum"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  </div>
+  </div>
+  </div>
+
+<script>
+      var GrandTotal = 0
+      let total = document.querySelectorAll('.total')
+      total.forEach((elemnt) => {
+        let value = parseInt(elemnt.innerHTML)
+        GrandTotal += value
+      })
+      document.getElementById('sum').innerHTML = GrandTotal
+    </script>
+{{>adminFoot}}
+</body>
+
+</html>

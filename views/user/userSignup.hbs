@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/user/loginform.css">
+    <title>Login Form Demo</title>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <form onsubmit="return valideform()" action="/users/signup"  method="post" class="form">
+            {{#if errorMessage}}
+            <p style="color:red;">{{errorMessage}}</p>
+            {{/if}}
+            <h2>Signup</h2>
+            <div class="input-group">
+                <input type="text" name="name" id="name" oninput="validateName()"  required>
+                <label>Name</label>
+                <div>
+                <span id="name-error"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="email"  name="email" id="email" oninput="validateEmail()"  required>
+                <label>Email</label>
+                <div>
+                <span id="email-error"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <input name="phone" id="phone" oninput="validateMobile()" required >
+                <label>Mobile No</label>
+                <div>
+                <span id="mobile-error"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" id="pass" required oninput="passwordvalidate()">
+                <label>Password</label>
+                <div>
+                <span id="pass-error"></span>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="password" id="repass" oninput="validateRepass()" required>
+                <label>Re-enter Password</label>
+                 <div>
+                <span id="pass2-error"></span>
+                </div>
+            </div>
+             <div class="input-group">
+                <input   name="referralCode"  placeholder="referralCode" >
+                <div>
+                <span id="paserror"></span>
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="submit-btn">
+        </form>
+    </div>
+</body>
+<script src="/js/validation.js"></script>
+</html>
