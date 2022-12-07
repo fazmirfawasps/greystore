@@ -99,7 +99,7 @@ module.exports = {
           payment_method: "paypal",
         },
         redirect_urls: {
-          return_url: "http://localhost:4000/users/verifyPaypal",
+          return_url: "http://greystore.tk/users/verifyPaypal",
           cancel_url: "http://localhost:4000/cancel",
         },
         transactions: [
