@@ -36,12 +36,12 @@
         <label for="" class="form-label">Image</label>
         <img src="/img/{{product.imageFile.[0]}}" id="imgView" style="width:50px;" alt="">
 
-        <input type="file" name="image" class="form-control" onchange="viewImage(event,'{{product.imageFile.[0]}}')"
+        <input type="file" name="image" class="form-control"  data-toggle="modal" data-target="#exampleModal" accept="image/*"  id="id_image" onchange="viewImage(event,'{{product.imageFile.[0]}}')"
           multiple>
         <label for="" class="form-label">Image</label>
         <img src="/img/{{product.imageFile.[1]}}" id="View" style="width:50px;" alt="">
 
-        <input type="file" name="image" class="form-control" onchange="view(event,'{{product.imageFile.[1]}}')"
+        <input type="file" name="image" class="form-control" id="middle" onchange="view(event,'{{product.imageFile.[1]}}')"
           multiple>
         <input type="hidden" id="pic1" name="pic1">
         <input type="hidden" id="pic2" name="pic2">
@@ -50,7 +50,7 @@
         <label for="" class="form-label">Image</label>
         <img src="/img/{{product.imageFile.[2]}}" id="pict" style="width:50px;" alt="">
 
-        <input type="file" name="image" class="form-control"  onchange="imagechange(event,'{{product.imageFile.[2]}}')"
+        <input type="file" name="image" class="form-control" id="last" onchange="imagechange(event,'{{product.imageFile.[2]}}')"
           multiple>
 
         <button type="submit" class="btn btn-primary mt-2"> submit</button>
@@ -64,7 +64,7 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">crop</h5>
                     <div class="modal-header border-bottom-0">
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -84,26 +84,31 @@
 
 
 
-
 {{>adminFoot}}
 <script src="/js/adminformvalidation.js"></script>
 
-<script defer src="https://cdn.crop.guide/loader/l.js?c=CKHLLF"></script>
+{{!-- <script defer src="https://cdn.crop.guide/loader/l.js?c=CKHLLF"></script> --}}
 
 <script>
   function viewImage(event, a) {
     document.getElementById('pic1').value = a
+    document.getElementById('last').readOnly=true
+    document.getElementById('middle').readOnly=true
 
     document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
 
   }
   function view(event, a) {
     document.getElementById('pic2').value = a
+     document.getElementById('last').readOnly=true
+    document.getElementById('first').readOnly=true
     document.getElementById('View').src = URL.createObjectURL(event.target.files[0])
 
   }
   function imagechange(event, a) {
     document.getElementById('pic3').value = a
+    document.getElementById('middle').readOnly=true
+    document.getElementById('first').readOnly=true
     document.getElementById('pict').src = URL.createObjectURL(event.target.files[0])
 
   }
@@ -111,9 +116,7 @@
 <script>
         const input = document.getElementById('id_image')
         const test = document.getElementById('test')
-        input.addEventListener('input', () => {
-            $('#exampleModal').modal('show');
-
+        input.addEventListener('change', () => {
             // Getting image file object from the input variable
             const img_data = []
             const imagebox = []
