@@ -120,7 +120,7 @@ router.get('/edit', async (req, res) => {
     console.log(category)
      
     // let a = product._id
-    console.log(a)
+    // console.log(a)
     let b = product
     console.log(b)
     res.render('admin/productEdit', { product, category })
