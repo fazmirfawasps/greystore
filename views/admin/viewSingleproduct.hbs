@@ -51,9 +51,9 @@
                 {{#if this.return}}
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <a class="dropdown-item"
-                    onclick="change('Approved return','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Approved return</a>
+                    onclick="change('Approved return','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}','{{this.payment}}')">Approved return</a>
                   <a class="dropdown-item"
-                    onclick="change('Return Rejected','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Reject</a>
+                    onclick="change('Return Rejected','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}','{{this.payment}}')">Reject</a>
                   
                 </div>
               {{else}}
@@ -61,12 +61,12 @@
                   {{#if dis}}
                   {{else}}
                   <a class="dropdown-item"
-                    onclick="change('Dispatched','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Dispatched</a>
+                    onclick="change('Dispatched','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}','{{this.payment}}')">Dispatched</a>
                     {{/if}}
                   <a class="dropdown-item"
-                    onclick="change('Delivered','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">delivered</a>
+                    onclick="change('Delivered','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}','{{this.payment}}')">delivered</a>
                   <a class="dropdown-item"
-                    onclick="change('Order Cancelled','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}')">Cancel</a>
+                    onclick="change('Order Cancelled','{{this.product}}','{{this._id}}','{{this.totalprice}}','{{this.user}}','{{this.payment}}')">Cancel</a>
 
                 </div>
                 {{/if}}
@@ -98,13 +98,13 @@
 
 </script>
 <script>
-  function change(e, proid, id, amount, userid) {
+  function change(e, proid, id, amount, userid,pay) {
     console.log(e)
 
     $.ajax({
       url: 'deliveryStatus',
       method: 'post',
-      data: { action: e, order: id, user: userid, total: amount, product: proid },
+      data: { action: e, order: id, user: userid, total: amount, product: proid,payment:pay },
 
 
       success: (response) => {

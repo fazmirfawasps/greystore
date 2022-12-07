@@ -30,7 +30,7 @@ module.exports={
             DeliveryAddress:{
                 address:order.address,
                 city:order.city,
-                pin:order.pin
+                pin:order.pincode
             },
             message:order.message,
             status:"Order Placed",

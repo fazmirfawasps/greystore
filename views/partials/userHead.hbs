@@ -24,7 +24,7 @@
         <div class="main-nav d-none d-lg-block">
           <nav class="site-navigation text-right text-md-center" role="navigation">
             <ul class="site-menu js-clone-nav d-none d-lg-block">
-              <li class="has-children active">
+              <li class="has-children ">
                 <a href="/users">Home</a>
                 <ul class="dropdown">
                   {{#if user}}
@@ -39,21 +39,44 @@
               </li>
 
               <li><a href="/users/shop">Shop</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              {{!-- <li><a href="contact.html">Contact</a></li> --}}
               {{#if user}}
 
               <li><a href="/users/order">orders</a></li>
 
               {{/if}}
 
-              <li><a href="contact.html"></a></li>
+              {{!-- <li><a href="contact.html"></a></li> --}}
               {{#if user}}
-              <li><a href="#" class="btn btn-person">{{user.name}}</a>
+              <li class="has-children active">
+                  <a href="#" class="btn btn-person">{{user.name}}</a>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-person" viewBox="0 0 16 16">
+                    <path
+                      d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  </svg>
+                  <ul class="dropdown">
+                    {{#if user}}
+                    <li> <a href="/users/logout" >logout</a></li>
+
+
+                    {{/if}}
+                    <li class="has-children">
+                      {{!-- <a href="#">Sub Menu</a> --}}
+                      <ul class="dropdown">
+                        {{!-- <li><a href="#">Menu One</a></li> --}}
+                        {{!-- <li><a href="#">Menu Two</a></li> --}}
+                        {{!-- <li><a href="#">Menu Three</a></li> --}}
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              {{!-- <li><a href="#" class="btn btn-person">{{user.name}}</a>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
                   viewBox="0 0 16 16">
                   <path
                     d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                </svg>
+                </svg> --}}
                 {{else}}
               <li><a href="/users/login" class="btn btn-person">Login</a>
                 {{/if}}
@@ -74,9 +97,9 @@
               class="icon-menu"></span></a>
 
         </div>
-        {{#if user}}
+        {{!-- {{#if user}}
         <a href="/users/logout" class="btn btn-dark ml-auto">logout</a>
-        {{/if}}
+        {{/if}} --}}
       </div>
     </div>
   </div>

@@ -118,8 +118,8 @@ router.get('/edit', async (req, res) => {
   categoryHelpers.getallCategoryDetails().then((category) => {
     console.log(product)
     console.log(category)
-
-    let a = product._id
+     
+    // let a = product._id
     console.log(a)
     let b = product
     console.log(b)
@@ -391,10 +391,22 @@ router.post('/deliveryStatus', async (req, res) => {
 
   console.log('pettilllaaaa')
   console.log(req.body)
+  if(req.body.action == 'Order Cancelled'){
+    if(!req.body.payment=='COD'){
+      console.log(req.body.action)
+      console.log(req.body.action)
+      console.log(req.body)
+      let srs = await wallet.getRefund(req.body.user, req.body.total)
+    }
+    else{
+      console.log('CASH KODUKULAAA')
+    }
+   
+  }
 
-  if (req.body.change == 'Approved return') {
+  if (req.body.action == 'Approved return') {
 
-    console.log(req.body.change)
+    console.log(req.body.action)
     console.log(req.body)
     let srs = await wallet.getRefund(req.body.user, req.body.total)
 
@@ -482,6 +494,7 @@ router.get('/couponDelete', (req, res) => {
 router.get('/viewSingleproduct', (req, res) => {
   console.log(req.query.id)
   adminHelpers.viewSingeleproduct(req.query.id).then((product) => {
+    console.log(product)
     product.forEach((element) => {
       if (element.SPstatus == "Requested Return") {
         element.return = true;

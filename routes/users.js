@@ -121,7 +121,9 @@ function commonroute(req,res,next){
 
 router.get('/login',function(req,res){
   console.log('login')
+  
   res.render('user/userLogin',{errorMessage:req.session.invalid})
+
     req.session.invalid=''
 })
 router.post('/login',(req,res)=>{
@@ -139,7 +141,13 @@ router.post('/login',(req,res)=>{
     console.log(req.session.userId)
     console.log('fuckedup')
     console.log('laliga')
-    res.redirect(req.session.lastroute)
+    if(req.session.lastroute){
+      res.redirect(req.session.lastroute)
+
+    }
+    else{
+      res.redirect('/users')
+    }
   }
   else if(response.block){
     req.session.invalid="You Have been Blocked By admin";
@@ -348,7 +356,7 @@ router.get('/shop',lastroute ,async(req,res)=>{
   
 })
 
-router.get('/cart', verifyLogin ,async function(req,res){
+router.get('/cart', verifyLogin ,lastroute,async function(req,res){
   console.log('woooooooooi')
   console.log('pettila')
   console.log('anik onnummnsilavall')
@@ -396,9 +404,14 @@ router.get('/addtocart/:id', (req,res)=>{
   console.log('nnu messi kalli')
   console.log(req.params.id)
   console.log(req.session.userId)
-  cartHelpers.addtocart(req.params.id,req.session.userId).then(()=>{
+  cartHelpers.addtocart(req.params.id,req.session.userId).then((response)=>{
  console.log("worked")
+ if(req.session.userLogIn){
  res.json({status:true})
+}
+ else{
+  res.json({status:false})
+ }
   })
   
 })
@@ -429,8 +442,15 @@ router.get('/check',verifyLogin, cartcount,async(req,res)=>{
 
   userHelpers.findAddress(req.session.userId).then((resp)=>{
     console.log(resp)
-     let response=[]
-     response[0]=resp[0]
+    let response=[]
+
+    if(!resp.length==0){
+      response[0]=resp[0]
+    }
+    else{
+      response=false
+    }
+    
     if(req.session.coupon){
       // var product = req.session.proCoupon
       console.log('kooi')

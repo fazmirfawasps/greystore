@@ -217,6 +217,7 @@ module.exports={
           {
             $project: {
               user:1,
+              payment:1,
               product: "$products.product",
               
               quantity: "$products.quantity",
@@ -240,6 +241,7 @@ module.exports={
             $project: {
               user:1,
               product: 1,
+              payment:1,
               status: 1,
               quantity: 1,
               totalprice:1,

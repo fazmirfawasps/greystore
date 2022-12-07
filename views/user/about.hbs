@@ -50,6 +50,8 @@
               <h5 class="my-3">{{user.name}}</h5>
               <p class="text-muted mb-1">{{user.email}}</p>
               <p class="text-muted mb-4">{{user.phone}}</p>
+              <p class="text-muted mb-4">{{user.referralCode}}</p>
+
               {{!-- <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary">Follow</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
@@ -110,8 +112,8 @@
                   <p class="text-muted mb-0">{{user.Address.[0].pincode}}</p>
                 </div>
                 <div class="d-flex justify-content-center mt-3 ml-3">
-                <a href="/users/manageAddres" class="btn btn-outline-primary ms-1">manageAddress</a>
-              </div>
+                  <a href="/users/manageAddress" class="btn btn-outline-primary ms-1">manageAddress</a>
+                </div>
               </div>
             </div>
           </div>

@@ -193,7 +193,7 @@
             // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
             // The new object URL represents the specified File object or Blob object.
             url.forEach((url, i) => {
-                document.getElementById('image-box' + i).innerHTML = `<img src="${url}" id="image${i}" style="width:100%;">`
+                document.getElementById('image-box' + i).innerHTML = `<img src="${url}" id="image${i}" style="width:100%; heigth:500px;">`
             })
 
             // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
