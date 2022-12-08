@@ -381,14 +381,18 @@
 
     }
   </script>
+  
   <script>
-    function addtowishlist(a) {
+    function addtocart(id) {
       $.ajax({
-        url: "/users/addtowishlist"
-        ,
-        data: { id: a },
+        url: "/users/addtocart/" + id,
+        type: "get",
         success: (response) => {
-          location.reload()
+          if (response.status)
+            location.reload()
+          else {
+            window.location.href = '/users/login'
+          }
         }
       })
     }

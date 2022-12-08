@@ -434,7 +434,11 @@
       url: "/users/addtocart/" + id,
       type: "get",
       success: (response) => {
-        location.reload()
+         if (response.status)
+            location.reload()
+          else {
+            window.location.href = '/users/login'
+          }
       }
     })
   }
