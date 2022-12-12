@@ -306,13 +306,15 @@ module.exports={
   }
   ,
 changeDefault:(userid,address,addresid)=>{
- return new Promise((resolve, reject) => {
+  console.log(userid)
+  console.log(addresid)
+  console.log('default address')
+  console.log(address)
+ return new Promise(async(resolve, reject) => {
   db.get().collection('user').updateOne({ _id: objectId(userid) },
  { $pull: { Address: {_id:objectId(addresid)} }}
-);
-
-
-  db.get().collection('user').updateOne(
+).then(async()=>{
+   await db.get().collection('user').updateOne(
     { _id:objectId(userid) },
     {
       $push: {
@@ -321,11 +323,16 @@ changeDefault:(userid,address,addresid)=>{
             $position: 0
          }
       }
-    }
-    
- )
+    })
+    resolve()
 
- resolve()
+});
+
+
+    
+    
+ 
+
  })
 },
 updateAddres: (userId, data) => {
